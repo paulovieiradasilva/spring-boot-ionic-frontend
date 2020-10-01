@@ -1,6 +1,9 @@
-import { CategoriaService } from './../../services/domain/categoria.services';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { CategoriaService } from './../../services/domain/categoria.services';
+
+import { API_CONFIG } from './../../config/api.config';
 import { Categoria } from '../../models/categoria';
 
 @IonicPage()
@@ -9,6 +12,9 @@ import { Categoria } from '../../models/categoria';
 	templateUrl: 'categorias.html',
 })
 export class CategoriasPage {
+
+	items: Categoria[];
+	bucketUrl: string = API_CONFIG.bucketBaseUrl;
 
 	constructor(
 		public navCtrl: NavController,
@@ -20,7 +26,7 @@ export class CategoriasPage {
 	/** */
 	ionViewDidLoad() {
 		this.categoriaService.findAll().subscribe((result: Categoria[]) => {
-			console.log(result);
+			this.items = result;
 		});
 	}
 
