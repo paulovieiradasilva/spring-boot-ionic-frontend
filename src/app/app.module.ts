@@ -9,6 +9,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MyApp } from './app.component';
 
 /** */
+import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
+
+/** */
 import { CategoriaService } from './../services/domain/categoria.services';
 
 
@@ -29,7 +32,8 @@ import { CategoriaService } from './../services/domain/categoria.services';
     StatusBar,
     SplashScreen,
     CategoriaService,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ErrorInterceptorProvider
   ]
 })
 export class AppModule { }
