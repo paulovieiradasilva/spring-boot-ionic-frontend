@@ -1,18 +1,27 @@
+import { CategoriaService } from './../../services/domain/categoria.services';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Categoria } from '../../models/categoria';
 
 @IonicPage()
 @Component({
-  selector: 'page-categorias',
-  templateUrl: 'categorias.html',
+	selector: 'page-categorias',
+	templateUrl: 'categorias.html',
 })
 export class CategoriasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public categoriaService: CategoriaService
+	) {
+	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CategoriasPage');
-  }
+	/** */
+	ionViewDidLoad() {
+		this.categoriaService.findAll().subscribe((result: Categoria[]) => {
+			console.log(result);
+		});
+	}
 
 }
