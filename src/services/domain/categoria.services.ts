@@ -8,9 +8,7 @@ import { API_CONFIG } from './../../config/api.config';
 @Injectable()
 export class CategoriaService {
 
-	constructor(public http: HttpClient) {
-		console.log('Hello ServicesDomainProvider Provider');
-	}
+	constructor(public http: HttpClient) {	}
 
 	/** */
 	findAll(): Observable<Categoria[]> {
