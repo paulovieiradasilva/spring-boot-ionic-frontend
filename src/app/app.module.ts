@@ -5,14 +5,15 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-/** */
+/** Components */
 import { MyApp } from './app.component';
 
-/** */
+/** Intercerptors */
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 
-/** */
+/** Services */
 import { CategoriaService } from './../services/domain/categoria.services';
+import { AuthService } from '../services/auth.service';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { CategoriaService } from './../services/domain/categoria.services';
     SplashScreen,
     CategoriaService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    AuthService
   ]
 })
 export class AppModule { }
