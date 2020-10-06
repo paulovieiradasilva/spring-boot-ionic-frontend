@@ -15,7 +15,11 @@ export class HomePage {
 		senha: ''
 	};
 
-	constructor(public navCtrl: NavController, public menu: MenuController, public auth: AuthService) {
+	constructor(
+		public navCtrl: NavController,
+		public menu: MenuController,
+		public auth: AuthService
+	) {
 
 	}
 
@@ -31,7 +35,7 @@ export class HomePage {
 
 	login() {
 		this.auth.authenticate(this.creds).subscribe((response) => {
-			console.log(response.headers.get('Authorization'));
+			this.auth.successfulLogin(response.headers.get('Authorization'));
 			this.navCtrl.setRoot('CategoriasPage');
 
 		}, error => { });

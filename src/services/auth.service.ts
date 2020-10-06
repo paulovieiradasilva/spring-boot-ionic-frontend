@@ -2,15 +2,31 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_CONFIG } from '../config/api.config';
 import { Credenciais } from '../models/credenciais';
+import { LocalUser } from '../models/local_user';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class AuthService {
 
-	constructor(public http: HttpClient) { }
+	constructor(public http: HttpClient, public storageService: StorageService) { }
 
 	/** */
 	authenticate(creds: Credenciais) {
 		return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, { observe: 'response', responseType: 'text' });
+	}
+
+	/** */
+	successfulLogin(autorization: string) {
+		let token = autorization.substring(7);
+		let user: LocalUser = {
+			token
+		}
+		this.storageService.setLocalUser(user);
+	}
+
+	/** */
+	logout() {
+		this.storageService.setLocalUser(null);
 	}
 
 }
