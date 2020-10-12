@@ -12,7 +12,7 @@ export class HomePage {
 
 	creds: Credential = {
 		email: '',
-		password: ''
+		senha: ''
 	};
 
 	constructor(

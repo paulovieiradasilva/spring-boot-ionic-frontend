@@ -1,8 +1,9 @@
-import { API_CONFIG } from './../../config/api.config';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { API_CONFIG } from './../../config/api.config';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/domain/product.service';
+import { CartService } from '../../services/domain/cart.service';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,8 @@ export class ProductDetailPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public productService: ProductService) {
+		public productService: ProductService,
+		public cartService: CartService) {
 	}
 
 	/** */
@@ -35,6 +37,12 @@ export class ProductDetailPage {
 			this.item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${this.item.id}.jpg`;
 
 		}, error => { });
+	}
+
+	/** */
+	AddToCart(product: Product) {
+		this.cartService.AddToCart(product);
+		this.navCtrl.setRoot('CartPage');
 	}
 
 }

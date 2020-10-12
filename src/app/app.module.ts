@@ -18,6 +18,7 @@ import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 import { ClientService } from '../services/domain/client.service';
 import { ProductService } from '../services/domain/product.service';
+import { CartService } from '../services/domain/cart.service';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ProductService } from '../services/domain/product.service';
 		AuthService,
 		StorageService,
 		ClientService,
-		ProductService
+		ProductService,
+		CartService
 	]
 })
 export class AppModule { }
