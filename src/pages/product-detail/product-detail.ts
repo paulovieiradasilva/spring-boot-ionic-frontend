@@ -1,3 +1,4 @@
+import { API_CONFIG } from './../../config/api.config';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Produto } from '../../models/produto';
@@ -20,7 +21,20 @@ export class ProductDetailPage {
 
 	/** */
 	ionViewDidLoad() {
-		this.item = { id: '1', nome: 'Mouse', preco: 80.99 };
+		this.produtoService.findById(this.navParams.get('id')).subscribe((response) => {
+			this.item = response;
+			/** Buscar img */
+			this.loadImageUrlsIfExists();
+
+		}, error => { });
+	}
+
+	/** */
+	loadImageUrlsIfExists() {
+		this.produtoService.getImageFromBucket(this.item.id).subscribe((response) => {
+			this.item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${this.item.id}.jpg`;
+
+		}, error => { });
 	}
 
 }
