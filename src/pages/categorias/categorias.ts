@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { CategoriaService } from './../../services/domain/categoria.services';
+import { CategoriaService } from '../../services/domain/categoria.service';
 
 import { API_CONFIG } from './../../config/api.config';
 import { Categoria } from '../../models/categoria';

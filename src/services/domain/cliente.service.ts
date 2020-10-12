@@ -20,4 +20,9 @@ export class ClienteService {
 		return this.http.get(`${API_CONFIG.bucketBaseUrl}/cp${id}.jpg`, { responseType: 'blob' });
 	}
 
+	/** */
+	insert(obj: Cliente) {
+		return this.http.post(`${API_CONFIG.baseUrl}/clientes`, obj, { observe: 'response', responseType: 'text' });
+	}
+
 }

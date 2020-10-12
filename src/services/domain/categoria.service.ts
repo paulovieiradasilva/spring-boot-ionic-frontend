@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { Categoria } from '../../models/categoria';
-import { API_CONFIG } from './../../config/api.config';
+import { API_CONFIG } from '../../config/api.config';
 
 @Injectable()
 export class CategoriaService {

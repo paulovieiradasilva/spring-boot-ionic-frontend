@@ -13,7 +13,7 @@ import { AuthInterceptorProvider } from './../interceptors/auth-interceptor copy
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 
 /** Services */
-import { CategoriaService } from './../services/domain/categoria.services';
+import { CategoriaService } from '../services/domain/categoria.service';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 import { ClienteService } from '../services/domain/cliente.service';
