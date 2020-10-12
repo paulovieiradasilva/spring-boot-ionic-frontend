@@ -23,7 +23,7 @@ export class ProductDetailPage {
 
 	/** */
 	ionViewDidLoad() {
-		this.productService.findById(this.navParams.get('id')).subscribe((response) => {
+		this.productService.findById(this.navParams.get('id')).subscribe((response: Product) => {
 			this.item = response;
 			/** Buscar img */
 			this.loadImageUrlsIfExists();
@@ -41,7 +41,7 @@ export class ProductDetailPage {
 
 	/** */
 	AddToCart(product: Product) {
-		this.cartService.AddToCart(product);
+		this.cartService.add(product);
 		this.navCtrl.setRoot('CartPage');
 	}
 

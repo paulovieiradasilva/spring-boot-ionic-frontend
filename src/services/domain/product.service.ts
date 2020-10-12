@@ -11,7 +11,10 @@ export class ProductService {
 
 	/** */
 	findById(id: string) {
-		return this.http.get<Product>(`${API_CONFIG.baseUrl}/produtos/${id}`);
+		return this.http.get<Product>(`${API_CONFIG.baseUrl}/produtos/${id}`)
+			.map((x: any) => {
+				return { id: x.id, name: x.nome, price: x.preco };
+			});
 	}
 
 	/** */

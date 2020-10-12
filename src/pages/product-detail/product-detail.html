@@ -10,13 +10,13 @@
 <ion-content padding>
 
 	<ion-card>
-		<img class="circle" [src]="item?.imageUrl || 'assets/imgs/prod.jpg'" alt="avatar">
+		<img style="width: 40px;" [src]="item?.imageUrl || 'assets/imgs/prod.jpg'" alt="avatar">
 		<ion-card-content>
 			<ion-card-title>
-				{{ item?.nome }}
+				{{ item?.name }}
 			</ion-card-title>
 			<p>
-				{{ item?.preco | currency:'BRL'}}
+				{{ item?.price | currency:'BRL'}}
 			</p>
 		</ion-card-content>
 	</ion-card>
