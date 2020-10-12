@@ -7,46 +7,46 @@ import { StorageService } from './../../services/storage.service';
 
 @IonicPage()
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html',
+	selector: 'page-profile',
+	templateUrl: 'profile.html',
 })
 export class ProfilePage {
 
-  cliente: Cliente;
+	cliente: Cliente;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public storageService: StorageService,
-    public clienteService: ClienteService) {
-  }
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public storageService: StorageService,
+		public clienteService: ClienteService) {
+	}
 
-  ionViewDidLoad() {
-    let localUser = this.storageService.getLocalUser();
+	ionViewDidLoad() {
+		let localUser = this.storageService.getLocalUser();
 
-    if (localUser && localUser.email) {
-      this.clienteService.findByEmail(localUser.email).subscribe(response => {
-        this.cliente = response;
-        /** Buscar img */
-        this.getImageIfExists();
+		if (localUser && localUser.email) {
+			this.clienteService.findByEmail(localUser.email).subscribe(response => {
+				this.cliente = response;
+				/** Buscar img */
+				this.getImageIfExists();
 
-      }, error => {
-        if (error.status == 403) {
-          this.navCtrl.setRoot('HomePage');
-        }
-      });
+			}, error => {
+				if (error.status == 403) {
+					this.navCtrl.setRoot('HomePage');
+				}
+			});
 
-    } else {
-      this.navCtrl.setRoot('HomePage');
-    }
-  }
+		} else {
+			this.navCtrl.setRoot('HomePage');
+		}
+	}
 
-  /** */
-  getImageIfExists() {
-    this.clienteService.getImageFromBucket(this.cliente.id).subscribe(response => {
-      this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
+	/** */
+	getImageIfExists() {
+		this.clienteService.getImageFromBucket(this.cliente.id).subscribe(response => {
+			this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
 
-    }, error => { });
-  }
+		}, error => { });
+	}
 
 }
