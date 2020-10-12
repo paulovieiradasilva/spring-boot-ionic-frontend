@@ -1,17 +1,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_CONFIG } from "../../config/api.config";
-import { Estado } from "../../models/estado";
+import { State } from "../../models/state";
 import { Observable } from "rxjs/Rx";
 
 @Injectable()
-export class EstadoService {
+export class StateService {
 
     constructor(public http: HttpClient) {
     }
 
 	/** */
-    findAll() : Observable<Estado[]>  {
-        return this.http.get<Estado[]>(`${API_CONFIG.baseUrl}/estados`);
+    findAll() : Observable<State[]>  {
+        return this.http.get<State[]>(`${API_CONFIG.baseUrl}/estados`);
     }
 }

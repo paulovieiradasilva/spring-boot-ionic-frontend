@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController } from 'ionic-angular';
-import { Credenciais } from '../../models/credenciais';
+import { Credential } from '../../models/credential';
 import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
@@ -10,9 +10,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HomePage {
 
-	creds: Credenciais = {
+	creds: Credential = {
 		email: '',
-		senha: ''
+		password: ''
 	};
 
 	constructor(
@@ -37,7 +37,7 @@ export class HomePage {
 	ionViewDidEnter() {
 		this.auth.refreshToken().subscribe((response) => {
 			this.auth.successfulLogin(response.headers.get('Authorization'));
-			this.navCtrl.setRoot('CategoriasPage');
+			this.navCtrl.setRoot('CategoryPage');
 
 		}, error => { });
 	}
@@ -46,7 +46,7 @@ export class HomePage {
 	login() {
 		this.auth.authenticate(this.creds).subscribe((response) => {
 			this.auth.successfulLogin(response.headers.get('Authorization'));
-			this.navCtrl.setRoot('CategoriasPage');
+			this.navCtrl.setRoot('CategoryPage');
 
 		}, error => { });
 	}

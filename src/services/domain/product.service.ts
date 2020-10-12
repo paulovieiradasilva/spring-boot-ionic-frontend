@@ -2,16 +2,16 @@ import { Observable } from 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_CONFIG } from '../../config/api.config';
-import { Produto } from '../../models/produto';
+import { Product } from '../../models/product';
 
 @Injectable()
-export class ProdutoService {
+export class ProductService {
 
 	constructor(public http: HttpClient) { }
 
 	/** */
 	findById(id: string) {
-		return this.http.get<Produto>(`${API_CONFIG.baseUrl}/produtos/${id}`);
+		return this.http.get<Product>(`${API_CONFIG.baseUrl}/produtos/${id}`);
 	}
 
 	/** */

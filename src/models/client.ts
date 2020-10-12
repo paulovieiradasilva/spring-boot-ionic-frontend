@@ -1,6 +1,6 @@
-export interface Cliente {
+export interface Client {
 	id: string;
-	nome: string;
+	name: string;
 	email: string;
 	imageUrl?: string;
 }

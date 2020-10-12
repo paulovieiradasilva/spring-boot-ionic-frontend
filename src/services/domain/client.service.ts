@@ -1,18 +1,18 @@
-import { StorageService } from './../storage.service';
+import { StorageService } from '../storage.service';
 import { Observable } from 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Cliente } from '../../models/cliente';
+import { Client } from '../../models/client';
 import { API_CONFIG } from '../../config/api.config';
 
 @Injectable()
-export class ClienteService {
+export class ClientService {
 
 	constructor(public http: HttpClient, public storage: StorageService) { }
 
 	/** */
-	findByEmail(email: string): Observable<Cliente> {
-		return this.http.get<Cliente>(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
+	findByEmail(email: string): Observable<Client> {
+		return this.http.get<Client>(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
 	}
 
 	/** */
@@ -21,7 +21,7 @@ export class ClienteService {
 	}
 
 	/** */
-	insert(obj: Cliente) {
+	insert(obj: Client) {
 		return this.http.post(`${API_CONFIG.baseUrl}/clientes`, obj, { observe: 'response', responseType: 'text' });
 	}
 

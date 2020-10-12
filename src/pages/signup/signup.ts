@@ -1,11 +1,11 @@
-import { ClienteService } from './../../services/domain/cliente.service';
-import { EstadoService } from './../../services/domain/estado.service';
-import { CidadeService } from './../../services/domain/cidade.service';
+import { ClientService } from '../../services/domain/client.service';
+import { StateService } from '../../services/domain/state.service';
+import { CityService } from '../../services/domain/city.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Cidade } from '../../models/cidade';
-import { Estado } from '../../models/estado';
+import { City } from '../../models/city';
+import { State } from '../../models/state';
 
 @IonicPage()
 @Component({
@@ -15,16 +15,16 @@ import { Estado } from '../../models/estado';
 export class SignupPage {
 
 	formGroup: FormGroup;
-	estados: Estado[];
-	cidades: Cidade[];
+	states: State[];
+	cities: City[];
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public formBuilder: FormBuilder,
-		public cidadeService: CidadeService,
-		public estadoService: EstadoService,
-		public clienteService: ClienteService,
+		public cityService: CityService,
+		public stateService: StateService,
+		public clientService: ClientService,
 		public alertCtrl: AlertController) {
 
 		/** */
@@ -49,9 +49,9 @@ export class SignupPage {
 
 	/** */
 	ionViewDidLoad() {
-		this.estadoService.findAll().subscribe(response => {
-			this.estados = response;
-			this.formGroup.controls.estadoId.setValue(this.estados[0].id);
+		this.stateService.findAll().subscribe(response => {
+			this.states = response;
+			this.formGroup.controls.estadoId.setValue(this.states[0].id);
 			this.updateCidades();
 
 		}, error => { });
@@ -59,9 +59,9 @@ export class SignupPage {
 
 	/** */
 	updateCidades() {
-		let estado_id = this.formGroup.value.estadoId;
-		this.cidadeService.findAll(estado_id).subscribe(response => {
-			this.cidades = response;
+		let state_id = this.formGroup.value.estadoId;
+		this.cityService.findAll(state_id).subscribe(response => {
+			this.cities = response;
 			this.formGroup.controls.cidadeId.setValue(null);
 
 		}, error => { });
@@ -69,7 +69,7 @@ export class SignupPage {
 
 	/** */
 	signupUser() {
-		this.clienteService.insert(this.formGroup.value).subscribe((response) => {
+		this.clientService.insert(this.formGroup.value).subscribe((response) => {
 			this.showInsertOk();
 
 		}, error => { });

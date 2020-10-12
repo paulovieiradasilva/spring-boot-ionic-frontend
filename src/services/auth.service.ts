@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
 import { API_CONFIG } from '../config/api.config';
-import { Credenciais } from '../models/credenciais';
+import { Credential } from '../models/credential';
 import { LocalUser } from '../models/local-user';
 import { StorageService } from './storage.service';
 
@@ -14,7 +14,7 @@ export class AuthService {
 	constructor(public http: HttpClient, public storageService: StorageService) { }
 
 	/** */
-	authenticate(creds: Credenciais) {
+	authenticate(creds: Credential) {
 		return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, { observe: 'response', responseType: 'text' });
 	}
 
