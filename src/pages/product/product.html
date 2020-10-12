@@ -15,7 +15,7 @@
 				<img class="circle" [src]="item.imageUrl || 'assets/imgs/prod.jpg'" alt="Produto">
 			</ion-thumbnail>
 			<h2>{{ item.nome }}</h2>
-			<p>{{ item.preco | currency:'BRL' }}</p>
+			<p>{{ item.preco | currency:"BRL":true:"1.2" }}</p>
 			<button ion-button clear item-end>View</button>
 		</ion-item>
 	</ion-list>
