@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
 import { API_CONFIG } from '../config/api.config';
 import { Credenciais } from '../models/credenciais';
-import { LocalUser } from '../models/local_user';
+import { LocalUser } from '../models/local-user';
 import { StorageService } from './storage.service';
 
 @Injectable()

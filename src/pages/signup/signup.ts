@@ -69,7 +69,7 @@ export class SignupPage {
 
 	/** */
 	signupUser() {
-		this.clienteService.insert(this.formGroup.value).subscribe(response => {
+		this.clienteService.insert(this.formGroup.value).subscribe((response) => {
 			this.showInsertOk();
 
 		}, error => { });
@@ -85,6 +85,7 @@ export class SignupPage {
 				{
 					text: 'Ok',
 					handler: () => {
+						/** Desempilhar pagina pop() */
 						this.navCtrl.pop();
 					}
 				}
