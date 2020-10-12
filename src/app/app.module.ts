@@ -20,28 +20,28 @@ import { ClienteService } from '../services/domain/cliente.service';
 
 
 @NgModule({
-  declarations: [
-    MyApp
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    IonicModule.forRoot(MyApp),
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    CategoriaService,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthInterceptorProvider,
-    ErrorInterceptorProvider,
-    AuthService,
-    StorageService,
-    ClienteService
-  ]
+	declarations: [
+		MyApp
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		IonicModule.forRoot(MyApp),
+	],
+	bootstrap: [IonicApp],
+	entryComponents: [
+		MyApp
+	],
+	providers: [
+		StatusBar,
+		SplashScreen,
+		CategoriaService,
+		{ provide: ErrorHandler, useClass: IonicErrorHandler },
+		AuthInterceptorProvider,
+		ErrorInterceptorProvider,
+		AuthService,
+		StorageService,
+		ClienteService
+	]
 })
 export class AppModule { }
