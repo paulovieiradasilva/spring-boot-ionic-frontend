@@ -12,7 +12,7 @@ import { StorageService } from './../../services/storage.service';
 })
 export class ProfilePage {
 
-	cliente: Client;
+	client: Client;
 
 	constructor(
 		public navCtrl: NavController,
@@ -26,7 +26,8 @@ export class ProfilePage {
 
 		if (localUser && localUser.email) {
 			this.clientService.findByEmail(localUser.email).subscribe(response => {
-				this.cliente = response;
+				// this.client = response as Client;
+				this.client = response;
 				/** Buscar img */
 				this.getImageIfExists();
 
@@ -43,8 +44,8 @@ export class ProfilePage {
 
 	/** */
 	getImageIfExists() {
-		this.clientService.getImageFromBucket(this.cliente.id).subscribe(response => {
-			this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
+		this.clientService.getImageFromBucket(this.client.id).subscribe(response => {
+			this.client.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.client.id}.jpg`;
 
 		}, error => { });
 	}
