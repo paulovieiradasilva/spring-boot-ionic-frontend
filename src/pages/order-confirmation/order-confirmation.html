@@ -3,15 +3,14 @@
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title>Confira seu pedido</ion-title>
-		<!-- <ion-title *ngIf="codpedido">Pedido registrado!</ion-title>
-		<ion-title *ngIf="!codpedido">Confira seu pedido</ion-title> -->
+		<ion-title *ngIf="codOrderId">Pedido registrado!</ion-title>
+		<ion-title *ngIf="!codOrderId">Confira seu pedido</ion-title>
 	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-	<div *ngIf="!codpedido">
+	<div *ngIf="!codOrderId">
 		<ion-card>
 			<ion-card-header>
 				Itens do pedido
@@ -22,10 +21,10 @@
 					<ion-thumbnail item-start>
 						<img [src]="item.product.imageUrl || 'assets/imgs/prod.jpg'">
 					</ion-thumbnail>
-					<h2>{{item.product.nome}}</h2>
-					<p>{{item.product.preco | currency}}</p>
+					<h2>{{item.product.name}}</h2>
+					<p>{{item.product.price | currency}}</p>
 					<p class="nolinebreak">{{item.quantity}}</p>
-					<p item-end>{{item.product.preco * item.quantidade | currency}}</p>
+					<p item-end>{{item.product.price * item.quantity | currency}}</p>
 				</ion-item>
 
 				<ion-item>
@@ -72,21 +71,21 @@
 		</ion-card>
 
 		<button ion-button block (click)="checkout()">Confirmar pedido</button>
-		<button ion-button block outline (click)="back()">Voltar</button>
+		<button ion-button block outline (click)="back(1)">Voltar</button>
 	</div>
 
-	<div *ngIf="codpedido">
+	<div *ngIf="codOrderId">
 		<ion-card>
 			<ion-card-header>
 				Seu pedido foi registrado!
 			</ion-card-header>
 			<ion-item>
-				<h2>Código do pedido: {{codpedido}}</h2>
+				<h2>Código do pedido: {{codOrderId}}</h2>
 				<p>Verifique seu email</p>
 			</ion-item>
 		</ion-card>
 
-		<button ion-button block outline (click)="home()">Voltar</button>
+		<button ion-button block outline (click)="back(2)">Voltar</button>
 	</div>
 
 </ion-content>

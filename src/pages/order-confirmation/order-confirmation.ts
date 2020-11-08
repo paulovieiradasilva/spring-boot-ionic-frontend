@@ -19,6 +19,7 @@ export class OrderConfirmationPage {
 	cartItens: CartItem[];
 	client: Client;
 	address: Address;
+	codOrderId: string;
 
 	constructor(
 		public navCtrl: NavController,
@@ -32,10 +33,7 @@ export class OrderConfirmationPage {
 	}
 
 	ionViewDidLoad() {
-		console.log(this.order);
-
 		this.cartItens = this.cartService.getCart().itens;
-		console.log(this.cartItens);
 
 		this.clientService.findById(this.order.cliente.id).subscribe(response => {
 			this.client = response as Client;
@@ -51,10 +49,16 @@ export class OrderConfirmationPage {
 		return list[i];
 	}
 
+	private extractId(location: string): string {
+		let i = location.lastIndexOf('/');
+
+		return location.substring(i + 1, location.length);
+	}
+
 	checkout() {
 		this.orderService.insert(this.order).subscribe(response => {
 			this.cartService.createOrClearCart();
-			console.log(response.headers.get('location'));
+			this.codOrderId = this.extractId(response.headers.get('location'));
 
 		}, error => {
 			if (error.status == 403) {
@@ -63,8 +67,13 @@ export class OrderConfirmationPage {
 		});
 	}
 
-	back() {
-		this.navCtrl.setRoot('CartPage');
+	back(n: number) {
+		if (n == 1) {
+			this.navCtrl.setRoot('CartPage');
+		};
+		if (n == 2) {
+			this.navCtrl.setRoot('HomePage');
+		}
 	}
 
 	total() {
