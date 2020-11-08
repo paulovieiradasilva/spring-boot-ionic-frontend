@@ -22,6 +22,11 @@ export class ProductPage {
 
 	/** */
 	ionViewDidLoad() {
+		this.loadData();
+	}
+
+	/** */
+	loadData() {
 		let loader = this.presentLoading();
 		this.productService.findByCategoria(this.navParams.get('id')).subscribe((response) => {
 			this.items = response['content'];
@@ -50,6 +55,7 @@ export class ProductPage {
 		this.navCtrl.push('ProductDetailPage', { id });
 	}
 
+	/** */
 	presentLoading() {
 		const loader = this.loadingCtrl.create({
 			content: "Aguarde ..."
@@ -57,5 +63,13 @@ export class ProductPage {
 		loader.present();
 
 		return loader;
+	}
+
+	/** */
+	doRefresh(refresher) {
+		this.loadData();
+		setTimeout(() => {
+			refresher.complete();
+		}, 1000);
 	}
 }
