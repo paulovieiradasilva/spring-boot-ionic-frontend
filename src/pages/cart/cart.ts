@@ -13,7 +13,7 @@ import { Product } from '../../models/product';
 })
 export class CartPage {
 
-	items: CartItem[];
+	itens: CartItem[];
 
 	constructor(
 		public navCtrl: NavController,
@@ -25,14 +25,14 @@ export class CartPage {
 	/** */
 	ionViewDidLoad() {
 		let cart = this.cartService.getCart();
-		this.items = cart.items;
+		this.itens = cart.itens;
 		this.loadImageUrls();
 	}
 
 	/** */
 	loadImageUrls() {
-		for (let i = 0; i < this.items.length; i++) {
-			let item = this.items[i];
+		for (let i = 0; i < this.itens.length; i++) {
+			let item = this.itens[i];
 			this.productService.getSmallImageFromBucket(item.product.id).subscribe((response) => {
 				item.product.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.product.id}-small.jpg`;
 
@@ -42,17 +42,17 @@ export class CartPage {
 
 	/** */
 	remove(product: Product) {
-		this.items = this.cartService.remove(product).items;
+		this.itens = this.cartService.remove(product).itens;
 	}
 
 	/** */
 	increase(product: Product) {
-		this.items = this.cartService.increase(product).items;
+		this.itens = this.cartService.increase(product).itens;
 	}
 
 	/** */
 	decrease(product: Product) {
-		this.items = this.cartService.decrease(product).items;
+		this.itens = this.cartService.decrease(product).itens;
 	}
 
 	/** */

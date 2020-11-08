@@ -10,7 +10,7 @@ export class CartService {
 
 	/** */
 	createOrClearCart(): Cart {
-		let cart: Cart = { items: [] };
+		let cart: Cart = { itens: [] };
 		this.storageService.setCart(cart);
 
 		return cart;
@@ -25,14 +25,11 @@ export class CartService {
 	/** */
 	add(product: Product): Cart {
 		let cart = this.getCart();
-		let position = cart.items.findIndex(x => x.product.id == product.id);
-
-		console.log(product);
-		
+		let position = cart.itens.findIndex(x => x.product.id == product.id);
 
 		/** */
 		if (position == -1) {
-			cart.items.push({ quantity: 1, product });
+			cart.itens.push({ quantity: 1, product });
 		}
 
 		this.storageService.setCart(cart);
@@ -42,11 +39,11 @@ export class CartService {
 	/** */
 	remove(product: Product): Cart {
 		let cart = this.getCart();
-		let position = cart.items.findIndex(x => x.product.id == product.id);
+		let position = cart.itens.findIndex(x => x.product.id == product.id);
 
 		/** */
 		if (position != -1) {
-			cart.items.splice(position, 1);
+			cart.itens.splice(position, 1);
 		}
 
 		this.storageService.setCart(cart);
@@ -56,11 +53,11 @@ export class CartService {
 	/** */
 	increase(product: Product): Cart {
 		let cart = this.getCart();
-		let position = cart.items.findIndex(x => x.product.id == product.id);
+		let position = cart.itens.findIndex(x => x.product.id == product.id);
 
 		/** */
 		if (position != -1) {
-			cart.items[position].quantity++;
+			cart.itens[position].quantity++;
 		}
 
 		this.storageService.setCart(cart);
@@ -70,14 +67,14 @@ export class CartService {
 	/** */
 	decrease(product: Product): Cart {
 		let cart = this.getCart();
-		let position = cart.items.findIndex(x => x.product.id == product.id);
+		let position = cart.itens.findIndex(x => x.product.id == product.id);
 
 		/** */
 		if (position != -1) {
-			cart.items[position].quantity--;
+			cart.itens[position].quantity--;
 
 			/** */
-			if (cart.items[position].quantity < 1) {
+			if (cart.itens[position].quantity < 1) {
 				cart = this.remove(product);
 			}
 		}
@@ -91,8 +88,8 @@ export class CartService {
 		let cart = this.getCart();
 		let sum = 0;
 
-		for (let i = 0; i < cart.items.length; i++) {
-			sum += (cart.items[i].product.price * cart.items[i].quantity);
+		for (let i = 0; i < cart.itens.length; i++) {
+			sum += (cart.itens[i].product.price * cart.itens[i].quantity);
 		}
 
 		return sum;
