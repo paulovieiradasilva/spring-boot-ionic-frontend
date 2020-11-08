@@ -57,6 +57,6 @@ export class PickAddressPage {
 
 	nextPage(item: Address) {
 		this.order.enderecoDeEntrega = { id: item.id };
-		console.log(this.order);
+		this.navCtrl.push('PaymentPage', { order: this.order });
 	}
 }
