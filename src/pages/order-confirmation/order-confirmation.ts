@@ -44,7 +44,7 @@ export class OrderConfirmationPage {
 		});
 	}
 
-	private findAdress(id: string, list: Address[]): Address {
+	private findAdress(id: string, list: Address[]) {
 		let i = list.findIndex(x => x.id = id);
 		return list[i];
 	}
