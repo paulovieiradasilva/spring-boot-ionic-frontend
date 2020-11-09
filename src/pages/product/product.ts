@@ -34,8 +34,6 @@ export class ProductPage {
 			this.itens = this.itens.concat(response['content']);
 			let end = this.itens.length - 1;
 			loader.dismiss();
-			console.log(this.page);
-			console.log(this.itens);
 			/** Buscar img */
 			this.loadImageUrls(start, end);
 
